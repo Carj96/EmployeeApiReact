@@ -1,11 +1,14 @@
+import { filterEmployeesData } from '../../store/employee/employees.slice';
 import { clearModalData } from '../../store/modal/modal.slice';
 
-export const handleSubmitNewEmployee = (event, dispatch, asyncAction, modalData, setModal) => {
+export const handleSubmitNewEmployee = (event, dispatch, asyncAction, modalData, setModal, filterData) => {
   event.preventDefault();
   const newData = { ...modalData, firstName: modalData.firstName.charAt(0).toUpperCase() + modalData.firstName.slice(1), lastName: modalData.lastName.charAt(0).toUpperCase() + modalData.lastName.slice(1) };
   dispatch(setModal(false));
   dispatch(clearModalData());
   dispatch(asyncAction(newData));
+  const newFilterData = { ...filterData, filterInput: filterData.filterInput.charAt(0).toUpperCase() + filterData.filterInput.slice(1) };
+  dispatch(filterEmployeesData(newFilterData));
 };
 
 export const handleCurrentEmployee = (emp, setModalData, setModal, setModalContentType, dispatch) => {

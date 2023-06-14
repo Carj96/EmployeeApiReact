@@ -28,7 +28,7 @@ function EmployeeList() {
     <>
       <Modal
         isVisible={isModalOpen}
-        content={ContentEmployeeList(Handlers, editMode, setEditMode)}
+        content={ContentEmployeeList(Handlers, editMode, setEditMode, filterData)}
         onClose={() => Handlers.handleCloseModal(dispatch, setOpen, setEditMode)}
       />
 

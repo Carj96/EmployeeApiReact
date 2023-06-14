@@ -45,7 +45,8 @@ const employeesSlice = createSlice({
         newCashData.push({ ...action.meta.arg });
         sessionStorage.setItem('employeeData', JSON.stringify(newCashData));
         state[0].data.push({ ...action.meta.arg });
-        state[0].filteredData?.push({ ...action.meta.arg });
+        // state[0].filteredData?.push({ ...action.meta.arg });
+        state[0].filteredData?.pop();
       })
       .addCase(Thunks.updateEmployee.pending, (state, action) => {
         const newData = state[0].data.map((emp) => {

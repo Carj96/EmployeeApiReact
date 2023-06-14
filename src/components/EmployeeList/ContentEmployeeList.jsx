@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createEmployee, deleteEmployee, updateEmployee } from '../../store/employee/employees.thunk';
 import './EmployeeList.scss';
@@ -6,14 +6,14 @@ import { setModalData, setOpen } from '../../store/modal/modal.slice';
 import { handleDeleteEmployee } from './handlers';
 import { handleCloseModal } from '../Modal/handlers';
 
-function ContentEmployeeList(handlers, editMode, setEditMode) {
+function ContentEmployeeList(handlers, editMode, setEditMode, filterData) {
   const modalData = useSelector((state) => state.modal.data);
   const modalContentType = useSelector((state) => state.modal.contentType);
   const dispatch = useDispatch();
 
   if (modalContentType === 'new') {
     return (
-      createEmployeeModal(modalData, setModalData, handlers, setOpen, dispatch)
+      createEmployeeModal(modalData, setModalData, handlers, setOpen, dispatch, filterData)
     );
   } if (modalContentType === 'current') {
     return (
@@ -22,11 +22,11 @@ function ContentEmployeeList(handlers, editMode, setEditMode) {
   }
 }
 
-function createEmployeeModal(modalData, setModalData, handlers, setModal, dispatch) {
+function createEmployeeModal(modalData, setModalData, handlers, setModal, dispatch, filterData) {
   return (
     <div>
       <h3>ADD NEW EMPLOYEE</h3>
-      <form onSubmit={(event) => handlers.handleSubmitNewEmployee(event, dispatch, createEmployee, modalData, setModal)}>
+      <form onSubmit={(event) => handlers.handleSubmitNewEmployee(event, dispatch, createEmployee, modalData, setModal, filterData)}>
         <div>
           <input type="text" name="firstName" placeholder="first name" required value={modalData.firstName} onChange={(e) => handlers.handleChangeInputs(e, setModalData, dispatch)} />
         </div>
