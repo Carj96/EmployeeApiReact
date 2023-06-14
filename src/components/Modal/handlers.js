@@ -5,7 +5,8 @@ export const handleChangeInputs = (event, setModalData, dispatch) => {
   return dispatch(setModalData({ name, value }));
 };
 
-export const handleCloseModal = (dispatch, setModal) => {
+export const handleCloseModal = (dispatch, setModal, setEditMode) => {
+  setEditMode(() => false);
   dispatch(clearModalData());
   dispatch(setModal(false));
 };

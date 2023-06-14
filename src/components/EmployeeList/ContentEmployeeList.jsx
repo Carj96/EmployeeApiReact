@@ -6,11 +6,10 @@ import { setModalData, setOpen } from '../../store/modal/modal.slice';
 import { handleDeleteEmployee } from './handlers';
 import { handleCloseModal } from '../Modal/handlers';
 
-function ContentEmployeeList(handlers) {
+function ContentEmployeeList(handlers, editMode, setEditMode) {
   const modalData = useSelector((state) => state.modal.data);
   const modalContentType = useSelector((state) => state.modal.contentType);
   const dispatch = useDispatch();
-  const [editMode, setEditMode] = useState(false);
 
   if (modalContentType === 'new') {
     return (

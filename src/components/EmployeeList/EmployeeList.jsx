@@ -19,6 +19,7 @@ function EmployeeList() {
     filterSelect: '',
     filterInput: '',
   });
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     dispatch(getEmployees());
@@ -27,8 +28,8 @@ function EmployeeList() {
     <>
       <Modal
         isVisible={isModalOpen}
-        content={ContentEmployeeList(Handlers)}
-        onClose={() => Handlers.handleCloseModal(dispatch, setOpen)}
+        content={ContentEmployeeList(Handlers, editMode, setEditMode)}
+        onClose={() => Handlers.handleCloseModal(dispatch, setOpen, setEditMode)}
       />
 
       {employee ? (
